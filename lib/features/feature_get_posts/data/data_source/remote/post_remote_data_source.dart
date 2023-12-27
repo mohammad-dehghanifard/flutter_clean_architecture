@@ -2,14 +2,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/core/constant.dart';
 import 'package:flutter_clean_architecture/features/feature_get_posts/data/model/post_model.dart';
+import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 
-part 'get_post_service.g.dart';
+part 'post_remote_data_source.g.dart';
 
 @RestApi(baseUrl: apiBaseUrl)
-abstract class GetPostApiService {
-  factory GetPostApiService(Dio dio) = _GetPostApiService;
+abstract class PostRemoteDataSource {
+  factory PostRemoteDataSource(Dio dio) = _PostRemoteDataSource;
+
   @GET('/posts')
-  Future<List<PostModel>> getPosts();
+  Future<HttpResponse<List<PostModel>>> getPosts();
 
 }
