@@ -12,8 +12,9 @@ class ImplPostRepository implements IPostRepository {
   @override
   Future<List<PostEntity>> getPosts() async {
     final httpRequest = await dataSource.getPosts();
+
     if(httpRequest.response.statusCode == HttpStatus.ok){
-      return httpRequest.data;
+      return httpRequest.response.data;
     } else {
       throw DioException(
           requestOptions: httpRequest.response.requestOptions,
