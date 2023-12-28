@@ -4,11 +4,11 @@ part of 'remote_post_bloc.dart';
 
 
 sealed class PostRemoteState extends Equatable{
-  const PostRemoteState({this.posts,this.error});
+  const PostRemoteState({this.posts,this.errorMessage});
   final List<PostEntity>? posts;
-  final DioException? error;
+  final String? errorMessage;
   @override
-  List<Object?> get props => [posts,error];
+  List<Object?> get props => [posts,errorMessage];
 }
 // loading state
 class RemotePostLoadingState extends PostRemoteState{}
@@ -17,7 +17,5 @@ class RemotePostSuccessState extends PostRemoteState{
   const RemotePostSuccessState(List<PostEntity> postList) : super(posts: postList);
 }
 // post failed state
-class RemotePostFailedState extends PostRemoteState{
-  const RemotePostFailedState(DioException exception) : super(error: exception);
-}
+class RemotePostFailedState extends PostRemoteState{}
 
