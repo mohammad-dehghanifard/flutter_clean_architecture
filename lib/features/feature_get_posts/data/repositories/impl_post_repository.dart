@@ -14,7 +14,7 @@ class ImplPostRepository implements IPostRepository {
     final httpRequest = await dataSource.getPosts();
 
     if(httpRequest.response.statusCode == HttpStatus.ok){
-      return httpRequest.response.data;
+      return httpRequest.data;
     } else {
       throw DioException(
           requestOptions: httpRequest.response.requestOptions,
